@@ -115,6 +115,7 @@ class Scene2 extends Phaser.Scene {
   pickPowerUp(player, powerUp) {
     // make it inactive and hide it
     powerUp.disableBody(true, true);
+    this.pickupSound.play();
   }
 
   // reset position of player and enemy when they crash each other
@@ -142,6 +143,7 @@ class Scene2 extends Phaser.Scene {
     this.score += 15;
     var scoreFormated = this.zeroPad(this.score, 6);
     this.scoreLabel.text = "SCORE " + scoreFormated;
+    this.explosionSound.play();
   }
 
   moveShip(ship, speed) {
