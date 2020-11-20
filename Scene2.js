@@ -116,8 +116,15 @@ class Scene2 extends Phaser.Scene {
   // reset position of player and enemy when they crash each other
   hurtPlayer(player, enemy) {
     this.resetShipPos(enemy);
-    player.x = config.width / 2 - 8;
-    player.y = config.height - 64;
+    var explosion = new Explosion(this, player.x, player.y);
+    player.disableBody(true, true);
+    // this.resetPlayer();
+    this.time.addEvent({
+      delay: 1000,
+      callback: this.resetPlayer,
+      callbackScope: this,
+      loop: false
+    });
   }
 
   // reset ship position when hit
@@ -141,6 +148,12 @@ class Scene2 extends Phaser.Scene {
     ship.y = 0;
     let randomX = Phaser.Math.Between(0, config.width);
     ship.x = randomX;
+  }
+
+  resetPlayer(){
+    var x = config.width / 2 - 8;
+    var y = config.height + 64;
+    this.player.enableBody(true, x, y, true, true);
   }
 
   destroyShip(pointer, gameObject) {
@@ -192,7 +205,9 @@ class Scene2 extends Phaser.Scene {
 
     this.movePlayerManager();
     if (Phaser.Input.Keyboard.JustDown(this.spacebar)){
-      this.shootBeam();
+      if(this.player.active){
+        this.shootBeam();
+      }
     }
     for(var i = 0; i < this.projectiles.getChildren().length; i++){
       var beam = this.projectiles.getChildren()[i];
