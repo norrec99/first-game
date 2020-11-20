@@ -206,6 +206,7 @@ class Scene2 extends Phaser.Scene {
   }
   shootBeam(){
     var beam = new Beam(this);
+    this.beamSound.play();
   }
 
   zeroPad(number, size){
