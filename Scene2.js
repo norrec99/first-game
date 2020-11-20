@@ -158,6 +158,18 @@ class Scene2 extends Phaser.Scene {
     var y = config.height + 64;
     this.player.enableBody(true, x, y, true, true);
     this.player.alpha = 0.5;
+
+    var tween = this.tweens.add({
+      targets: this.player,
+      y: config.height - 64,
+      ease: "Power1",
+      duration: 1500,
+      repeat: 0,
+      onComplete: function(){
+        this.player.alpha = 1;
+      },
+      callbackScope: this
+    });
   }
 
   destroyShip(pointer, gameObject) {
