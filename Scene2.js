@@ -75,6 +75,7 @@ class Scene2 extends Phaser.Scene {
     });
     this.physics.add.overlap(this.player, this.powerUps, this.pickPowerUp, null, this);
     this.physics.add.overlap(this.player, this.enemies, this.hurtPlayer, null, this);
+    this.physics.add.overlap(this.projectiles, this.enemies, this.hitEnemy, null, this);
   }
 
   pickPowerUp(player, powerUp) {
@@ -85,6 +86,11 @@ class Scene2 extends Phaser.Scene {
     this.resetShipPos(enemy);
     player.x = config.width / 2 - 8;
     player.y = config.height - 64;
+  }
+
+  hitEnemy(projectile, enemy) {
+    projectile.destroy();
+    this.resetShipPos(enemy);
   }
 
   moveShip(ship, speed) {
