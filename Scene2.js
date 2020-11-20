@@ -11,6 +11,11 @@ class Scene2 extends Phaser.Scene {
     this.ship2 = this.add.sprite(config.width/2, config.height/2, "ship2");
     this.ship3 = this.add.sprite(config.width/2 + 50, config.height/2, "ship3");
     this.player = this.physics.add.sprite(config.width/2 - 8, config.height - 64, "player");
+
+    this.enemies = this.physics.add.group();
+    this.enemies.add(this.ship1);
+    this.enemies.add(this.ship2);
+    this.enemies.add(this.ship3);
     
 
     this.powerUps = this.physics.add.group();
@@ -64,6 +69,16 @@ class Scene2 extends Phaser.Scene {
     this.input.on("gameobjectdown", this.destroyShip, this);
 
     this.add.text(20, 20, "Playing game", {font: "25px Arial", fill: "yellow"});
+
+    this.physics.add.collider(this.projectiles, this.powerUps, function(projectile, powerUp) {
+      projectile.destroy();
+    });
+    this.physics.add.overlap(this.player, this.powerUps, this.pickPowerUp, null, this);
+    this.physics.add.overlap(this.player, this.enemies, this.hurtPlayer, null, this);
+  }
+
+  pickPowerUp(player, powerUp) {
+    powerUp.disableBody(true, true);
   }
 
   moveShip(ship, speed) {
