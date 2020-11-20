@@ -39,6 +39,18 @@ class Scene2 extends Phaser.Scene {
     this.explosionSound = this.sound.add("audio_explosion");
     this.pickupSound = this.sound.add("audio_pickup");
     
+    this.music = this.sound.add("music");
+    var musicConfig = {
+      mute: false,
+      volume: 1,
+      rate: 1,
+      detune: 0,
+      seek: 0,
+      loop: false,
+      delay: 0
+    }
+    this.music.play(musicConfig);
+    
 
     this.powerUps = this.physics.add.group();
 
