@@ -191,6 +191,8 @@ class Scene2 extends Phaser.Scene {
       },
       callbackScope: this
     });
+    var scoreFormated = this.zeroPad(this.score, 6);
+    this.scoreLabel.text = "SCORE " + scoreFormated;
   }
 
   destroyShip(pointer, gameObject) {
