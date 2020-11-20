@@ -125,7 +125,8 @@ class Scene2 extends Phaser.Scene {
     projectile.destroy();
     this.resetShipPos(enemy);
     this.score += 15;
-    this.scoreLabel.text = "SCORE " + this.score;
+    var scoreFormated = this.zeroPad(this.score, 6);
+    this.scoreLabel.text = "SCORE " + scoreFormated;
   }
 
   moveShip(ship, speed) {
