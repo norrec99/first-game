@@ -7,6 +7,7 @@ class Scene2 extends Phaser.Scene {
     this.background = this.add.tileSprite(0,0, config.width, config.height, "background");
     this.background.setOrigin(0,0);
 
+    this.score = 0;
     this.scoreLabel = this.add.bitmapText(10, 5, "pixelFont", "SCORE ", 16);
 
     this.ship1 = this.add.sprite(config.width/2 - 50, config.height/2, "ship");
@@ -112,6 +113,8 @@ class Scene2 extends Phaser.Scene {
   hitEnemy(projectile, enemy) {
     projectile.destroy();
     this.resetShipPos(enemy);
+    this.score += 15;
+    this.scoreLabel.text = "SCORE " + this.score;
   }
 
   moveShip(ship, speed) {
