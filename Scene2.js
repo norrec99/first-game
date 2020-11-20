@@ -145,6 +145,9 @@ class Scene2 extends Phaser.Scene {
       callbackScope: this,
       loop: false
     });
+    // to reset the score
+    this.score = 0;
+    this.scoreLabel.text = "YOUR SHIP IS DESTROYED";
   }
 
   // reset ship position when hit
