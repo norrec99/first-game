@@ -81,6 +81,12 @@ class Scene2 extends Phaser.Scene {
     powerUp.disableBody(true, true);
   }
 
+  hurtPlayer(player, enemy) {
+    this.resetShipPos(enemy);
+    player.x = config.width / 2 - 8;
+    player.y = config.height - 64;
+  }
+
   moveShip(ship, speed) {
     ship.y += speed;
     if (ship.y > config.height) {
