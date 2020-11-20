@@ -1,5 +1,7 @@
 var gameSettings = {
   playerSpeed: 200,
+  maxPowerups: 2,
+  powerUpVel: 50,
 }
 
 var config = {
@@ -11,7 +13,8 @@ var config = {
   physics: {
     default: "arcade",
     arcade:{
-      debug: false
+      debug: false,
+      debugShowVelocity: false
     }
   }
 }
