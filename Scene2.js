@@ -128,6 +128,9 @@ class Scene2 extends Phaser.Scene {
     // make it inactive and hide it
     powerUp.disableBody(true, true);
     this.pickupSound.play();
+    this.score += 100;
+    var scoreFormated = this.zeroPad(this.score, 6);
+    this.scoreLabel.text = "SCORE " + scoreFormated;
   }
 
   // reset position of player and enemy when they crash each other
