@@ -7,6 +7,8 @@ class Scene2 extends Phaser.Scene {
     this.background = this.add.tileSprite(0,0, config.width, config.height, "background");
     this.background.setOrigin(0,0);
 
+    this.scoreLabel = this.add.bitmapText(10, 5, "pixelFont", "SCORE ", 16);
+
     this.ship1 = this.add.sprite(config.width/2 - 50, config.height/2, "ship");
     this.ship2 = this.add.sprite(config.width/2, config.height/2, "ship2");
     this.ship3 = this.add.sprite(config.width/2 + 50, config.height/2, "ship3");
@@ -74,8 +76,6 @@ class Scene2 extends Phaser.Scene {
     });
 
     this.input.on("gameobjectdown", this.destroyShip, this);
-
-    this.add.text(20, 20, "Playing game", {font: "25px Arial", fill: "yellow"});
 
     
     // Add the collider
