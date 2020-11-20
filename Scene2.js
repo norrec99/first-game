@@ -116,6 +116,9 @@ class Scene2 extends Phaser.Scene {
   // reset position of player and enemy when they crash each other
   hurtPlayer(player, enemy) {
     this.resetShipPos(enemy);
+    if(this.player.alpha < 1){
+      return;
+    }
     var explosion = new Explosion(this, player.x, player.y);
     player.disableBody(true, true);
     // this.resetPlayer();
@@ -154,6 +157,7 @@ class Scene2 extends Phaser.Scene {
     var x = config.width / 2 - 8;
     var y = config.height + 64;
     this.player.enableBody(true, x, y, true, true);
+    this.player.alpha = 0.5;
   }
 
   destroyShip(pointer, gameObject) {
