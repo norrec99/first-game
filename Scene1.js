@@ -38,6 +38,7 @@ class Scene1 extends Phaser.Scene {
       frameHeight: 16
     });
     this.load.bitmapFont("pixelFont", "assets/font/font.png", "assets/font/font.xml");
+    this.load.audio("audio_beam", ["assets/sounds/beam.ogg", "assets/sounds/beam.mp3"]);
   }
 
   create() {
